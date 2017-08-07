@@ -65,5 +65,5 @@ if &term=="xterm"
      set t_Sf=[3%dm
 endif
 
-set background=dark
+set background=light
 set tags=tags;
