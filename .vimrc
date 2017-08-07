@@ -12,15 +12,17 @@ set history=50    " keep 50 lines of command line history
 set ruler   " show the cursor position all the time
 set number
 set autoindent
-set smartindent
+filetype indent on
 set pastetoggle=<F2>
-set softtabstop=2
-set shiftwidth=2
+set softtabstop=4
+set shiftwidth=4
 set expandtab
-set tabstop=2
+set tabstop=4
 set vb t_vb=
 set virtualedit=all
 set autowrite
+
+set nois  " disable incremental search
 
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
@@ -31,6 +33,8 @@ if has("autocmd")
   \ if line("'\"") > 0 && line ("'\"") <= line("$") |
   \   exe "normal! g'\"" |
   \ endif
+  autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
+  autocmd VimLeave * call system("tmux rename-window bash")
 endif
 
 if has("cscope") && filereadable("/usr/bin/cscope")
@@ -62,6 +66,4 @@ if &term=="xterm"
 endif
 
 set background=dark
-
-set autochdir
 set tags=tags;
