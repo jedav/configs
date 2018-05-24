@@ -67,3 +67,4 @@ endif
 
 set background=dark
 set tags=tags;
+set mouse-=a
